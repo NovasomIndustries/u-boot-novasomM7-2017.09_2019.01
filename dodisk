@@ -1,0 +1,16 @@
+#!/bin/bash
+MINILOADER="../rkbin/bin/rk33/rk322xh_miniloader_v2.46.bin"
+DDR="../rkbin/bin/rk33/rk3328_ddr_333MHz_v1.13.bin"
+DISK="sd.img"
+
+tools/mkimage -n rk3328 -T rksd -d ${DDR} idbloader.img
+cat ${MINILOADER} >> idbloader.img
+
+sudo dd if=gpt.img of=${DISK} conv=notrunc
+sudo dd if=idbloader.img of=${DISK} seek=64 conv=notrunc
+sudo dd if=uboot.img of=${DISK} seek=16384 conv=notrunc
+sudo dd if=trust.img of=${DISK} seek=24576 conv=notrunc
+sudo dd if=../kernel/boot.img of=${DISK} seek=32768 conv=notrunc
+sync
+sudo dd if=${DISK} of=/dev/sdb 
+

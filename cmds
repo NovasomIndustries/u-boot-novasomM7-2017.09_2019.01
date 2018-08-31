@@ -1,0 +1,6 @@
+setenv uuid_gpt_disk D768ED04-0D56-43E1-9E8C-59EAA895DA94
+setenv uuid_gpt_loader1 333a128e-d3e3-b94d-92f4-d3ebd9b3224f
+setenv uuid_gpt_loader2 f20aa902-1c5d-294a-9177-97a513e3cae4
+setenv uuid_gpt_atf f20aa902-1c5d-294a-9177-97a513e3cae4
+setenv uuid_gpt_boot db88503d-34a5-3e41-836d-c757cb682814
+
