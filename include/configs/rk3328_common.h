@@ -100,7 +100,7 @@
         "ethaddr=5c:b8:b2:91:9f:29\0" \
 	"ramdisk_size=96000\0" \
         "mmcdev=1\0" \
-        "mmcpart=4\0" \
+        "mmcpart=8\0" \
         "usbdev=0\0" \
         "usbpart=1\0" \
         "ramroot=/dev/ram rootwait rw\0" \
