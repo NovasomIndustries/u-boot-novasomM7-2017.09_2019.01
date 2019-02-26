@@ -86,6 +86,16 @@
 #define RKIMG_DET_BOOTDEV \
 	"rkimg_bootdev=setenv devtype mmc; setenv devnum 1; echo Boot from SDcard;"
 
+/*
+ * original values 
+ *
+
+"fdt_addr=0x01f00000\0" \
+"fsaddr=0x04000000\0" \
+"loadaddr=0x02080000\0" \
+
+ *
+ */
 #define CONFIG_EXTRA_ENV_SETTINGS \
         "bootenv=NOVAsomParams\0" \
         "baudrate=115200\0" \
@@ -94,9 +104,9 @@
         "fdt_file=dtb.dtb\0" \
         "console=ttyFIQ0\0" \
         "splashpos=m,m\0" \
-        "fdt_addr=0x01f00000\0" \
-        "fsaddr=0x04000000\0" \
-        "loadaddr=0x02080000\0" \
+        "fdt_addr=0x00500000\0" \
+        "fsaddr=0x02000000\0" \
+        "loadaddr=0x00580000\0" \
         "ethaddr=5c:b8:b2:91:9f:29\0" \
 	"ramdisk_size=96000\0" \
         "mmcdev=1\0" \
@@ -104,10 +114,14 @@
         "usbdev=0\0" \
         "usbpart=1\0" \
         "ramroot=/dev/ram rootwait rw\0" \
-        "mmcloadimage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${image}\0" \
-        "mmcloadinitrd=fatload mmc ${mmcdev}:${mmcpart} ${fsaddr} ${initrd}\0" \
-        "mmcloadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
-        "mmcloadbootenv=fatload mmc ${mmcdev}:${mmcpart}  ${loadaddr} ${bootenv}\0" \
+        "fatmmcloadimage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${image}\0" \
+        "fatmmcloadinitrd=fatload mmc ${mmcdev}:${mmcpart} ${fsaddr} ${initrd}\0" \
+        "fatmmcloadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
+        "fatmmcloadbootenv=fatload mmc ${mmcdev}:${mmcpart}  ${loadaddr} ${bootenv}\0" \
+        "mmcloadimage=ext2load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${image}\0" \
+        "mmcloadinitrd=ext2load mmc ${mmcdev}:${mmcpart} ${fsaddr} ${initrd}\0" \
+        "mmcloadfdt=ext2load mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
+        "mmcloadbootenv=ext2load mmc ${mmcdev}:${mmcpart}  ${loadaddr} ${bootenv}\0" \
         "importbootenv=echo Importing environment ...; env import -t ${loadaddr} ${filesize}\0" \
         "usbloadbootscript=fatload usb ${usbdev}:${usbpart} ${loadaddr} ${script};\0" \
         "usbloadimage=fatload usb ${usbdev}:${usbpart} ${loadaddr} ${image}\0" \
