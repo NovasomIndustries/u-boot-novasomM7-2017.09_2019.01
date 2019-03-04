@@ -110,6 +110,7 @@
         "ethaddr=5c:b8:b2:91:9f:29\0" \
 	"ramdisk_size=96000\0" \
         "mmcdev=1\0" \
+        "emmcdev=0\0" \
         "mmcpart=8\0" \
         "usbdev=0\0" \
         "usbpart=1\0" \
@@ -132,10 +133,14 @@
                 "run boardargs; " \
                 "booti ${loadaddr} ${fsaddr} ${fdt_addr};\0" \
 
-/* #define CONFIG_BOOTCOMMAND \ 
+/* #define CONFIG_BOOTCOMMAND  
 */
+/*
+		"mmc dev ${mmcdev}; "
+*/
+
 #define RKIMG_BOOTCOMMAND \
-           "mmc dev ${mmcdev}; "\
+		"if mmc dev 1; then setenv mmcdev 1; else setenv mmcdev 0; fi; " \
                 "if mmc rescan; then " \
                         "if run mmcloadbootenv; then " \
                                 "echo Loaded environment ${bootenv};" \
