@@ -10,7 +10,7 @@
 #include "rk3328-sdram-ddr3-666.dtsi"
 
 / {
-	model = "Rockchip RK3328 EVB";
+	model = "NOVAsom M7 (RK3328)";
 	compatible = "rockchip,rk3328-evb", "rockchip,rk3328";
 
 	chosen {
